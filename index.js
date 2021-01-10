@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 app.use(cors())
 
 const port = process.env.PORT || 5000
@@ -19,8 +21,6 @@ moongose.connect('mongodb+srv://leopiola:martogato@cluster0.3jn0a.mongodb.net/te
     console.log('Error credenciales para conectarse a NSA')
 })
 
-
-app.use(express.json())
 app.use('/productos', productos)
 app.use('/',home)
 

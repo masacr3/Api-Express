@@ -20,9 +20,20 @@
     $(document).ready(function(){
         $('#submit').click(function(e){
             e.preventDefault()
+            let nom = document.querySelector('#nombre').value
+            let tel = document.querySelector('#telefono').value
+            let em = document.querySelector('#email').value
+
+            console.log('estos son los datos del input',nom,tel,em)
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:5000',
+                dataType : 'json',
+                data: {
+                    nombre : nom,
+                    telefono: tel,
+                    email : em
+                },
                 success: function(rta){
                     console.log(rta)
                 }

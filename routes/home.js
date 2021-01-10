@@ -9,6 +9,7 @@ router
         res.send('se ha conectado sastifactoriamente al servidor')
     })
     .post( (req, res) =>{
+        console.log(req.body.email)
         console.log('POST : Se han conectado desde la web')
         res.send('POST : se ha enviado los datos sastifactoriamente')
     })
