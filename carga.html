@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cargar datos</title>
+</head>
+<body>
+    <form method="post" class="contenedor">
+        <input type="text" class="in" placeholder="Codigo barras">
+        <input type="text" class="in" placeholder="Marca">
+        <input type="text" class="in" placeholder="Producto">
+        <input type="text" class="in" placeholder="Precio">
+        <input type="text" class="in" placeholder="Precio Publico">
+        <button type="submit">CARGAR DATOS</button>
+    </form>
+    
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+</body>
+
+<script>
+    let inputs = [ $('.codigo'), $('.marca'), $('.producto'), $('.precio'),$('.precio-publico')]
+
+    function currentFocus(focus){
+        inputs[focus].focus()
+    }
+
+    inputs.forEach( (item,i) =>{
+        item.keypress( e =>{
+            let code = ( e.keyCode ? e.keyCode : e.which)
+            if ( code == 13 ){
+                e.preventDefault()
+                currentFocus(i+1)
+            }
+        })
+    })
+</script>
+
+<style>
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+</html>

@@ -3,6 +3,8 @@ const AgendaSchema = mongoose.Schema({
     nombre : String,
     telefono : String,
     email: String
+},{
+    versionKey : false
 })
 
-module.exports = mongoose.model('Agenda',AgendaSchema)
+module.exports = mongoose.model('Agendas',AgendaSchema)
