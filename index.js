@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(cors())
 
 const port = process.env.PORT || 5000
-const productos = require('./routes/productos')
+
 const home = require('./routes/home')
 const moongose = require('mongoose')
 
@@ -21,7 +21,6 @@ moongose.connect('mongodb+srv://leopiola:martogato@cluster0.3jn0a.mongodb.net/te
     console.log('Error credenciales para conectarse a NSA')
 })
 
-app.use('/productos', productos)
 app.use('/',home)
 
 app.listen(port, () => console.log(`server started on port ${port}`))
