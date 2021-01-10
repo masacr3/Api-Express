@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud mongoDB</title>
+</head>
+<body>
+    <form method="post" class="contenedor">
+        <input type="text" id="nombre" placeholder="nombre">
+        <input type="text" id="telefono" placeholder="telefono">
+        <input type="text" id="email" placeholder="email">
+        <button id="submit" type="submit">ENVIAR</button>
+    </form>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#submit').click(function(e){
+            e.preventDefault()
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:5000',
+                success: function(rta){
+                    console.log(rta)
+                }
+            })
+        })
+    })
+</script>
+
+
+<style>
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+</html>
