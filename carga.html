@@ -7,7 +7,7 @@
 </head>
 <body>
     <form method="post" class="contenedor">
-        <input type="text" class="in" placeholder="Codigo barras">
+        <input type="text" class="cod" placeholder="Codigo barras">
         <input type="text" class="in" placeholder="Marca">
         <input type="text" class="in" placeholder="Producto">
         <input type="text" class="in" placeholder="Precio">
@@ -20,18 +20,54 @@
 </body>
 
 <script>
-    let inputs = [ $('.codigo'), $('.marca'), $('.producto'), $('.precio'),$('.precio-publico')]
+    let inputs = document.querySelectorAll('.in')
+    let listainputs = Array.from(inputs)
 
-    function currentFocus(focus){
-        inputs[focus].focus()
+    const cod = document.querySelector('.cod')
+
+    function chequeaCodigoBarras(value){
+        return value < 100 ? true : false
     }
 
+    function resetInput(){
+        inputs.forEach(item =>{
+            item.value = ''
+        })
+    }
+
+    function ajax(url,data,Method){
+        fetch(url,{
+            method : Method,
+            body : JSON.stringify(data),
+            headers:{
+                'Content-Type' : 'application/json'
+            }
+        })
+        .then(res=>{
+            console.log('siiiiiiiii')
+        })
+        .catch(err =>{
+            console.log('noooooo')
+        })
+    }
+
+    cod.addEventListener('keypress', e =>{
+        let code = ( e.keyCode ? e.keyCode : e.which)
+            if ( code == 13 ){
+                e.preventDefault()
+                //focus al siguiente
+                ajax('http://localhost:5000',{},'POST')
+            }
+    })
+
+    //codigo mantenible
     inputs.forEach( (item,i) =>{
-        item.keypress( e =>{
+        item.addEventListener('keypress',e =>{
             let code = ( e.keyCode ? e.keyCode : e.which)
             if ( code == 13 ){
                 e.preventDefault()
-                currentFocus(i+1)
+                //focus al siguiente
+                if ( (i+1) < listainputs.length ) listainputs[i+1].focus()
             }
         })
     })
