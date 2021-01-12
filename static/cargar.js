@@ -17,6 +17,17 @@ inputs.forEach( item =>{
     item.disabled = true
 })
 
+function resetall(){
+    resetInput()
+
+    inputs.forEach( item =>{
+        item.disabled = true
+    })
+    
+    cod.value = ''
+    cod.focus()
+}
+
 
 //Verifca la existencia del codigo de barras
 cod.addEventListener('keypress', e =>{
@@ -50,9 +61,8 @@ cod.addEventListener('keypress', e =>{
         }
 })
 
-document.addEventListener('submit', e =>{
-    e.preventDefault()
-    
+
+function pushMongo(){
     fetch(URL_PUSHDATOS,{
         method : 'POST',
         body : JSON.stringify({
@@ -66,10 +76,24 @@ document.addEventListener('submit', e =>{
     })
     .then( res =>{
         console.log('datos agregados sastifactoriamente')
+        resetall()
     })
     .catch( err=>{
         console.log('error')
     })
+}
+
+document.addEventListener('submit', e =>{
+    e.preventDefault()
+    pushMongo()
+})
+
+btn.addEventListener('keypress', e =>{
+    let code = ( e.keyCode ? e.keyCode : e.which)
+        if ( code == 13 ){
+            e.preventDefault()
+            pushMongo()
+        }
 })
 
 //codigo mantenible
