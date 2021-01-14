@@ -2,6 +2,7 @@ let inputs = document.querySelectorAll('.in')
 let listainputs = Array.from(inputs)
 const cod = document.querySelector('.cod')
 const btn = document.querySelector('.btn')
+const mensaje = document.querySelector('.mensaje')
 
 const URL_CODIGOBARRAS = 'http://localhost:5000/verificacod'
 const URL_PUSHDATOS = 'http://localhost:5000/cargardatos'
@@ -51,6 +52,9 @@ cod.addEventListener('keypress', e =>{
                     cod.focus()
                 }
                 else{
+                    mensaje.classList.remove('muted')
+                    mensaje.classList.add('ok')
+                    mensaje.innerHTML = 'ok'
                     listainputs[0].focus()
                 }
             })
